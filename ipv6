@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Description: configure ipv6
+
+# Author Jane Wawer
+
+# Date : September 17th 2020
+
+if [ -f /etc/sysconfig/network ]
+
+then
+
+cp /etc/sysconfig/network /etc/sysconfig/network.bk
+
+echo "NETWORKING_IPV6=no " > /etc/sysconfig/network.bk
+echo "IPV6INIT=no" >> /etc/sysconfig/network.bk
+echo "I ROCK" >> /etc/sysconfig/network.bk
+fi

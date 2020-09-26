@@ -1,0 +1,62 @@
+#!/bin/bash
+
+## Description: Checking if the grub.cfg file exists
+
+if [ -f /boot/grub2/grub.cfg ]
+
+	then 
+
+	echo "grib.cfg file exists"
+
+	else
+
+	echo "grub.cfg file is missing"
+
+fi
+
+## Description: for statements reading from another file and echoing the color read
+
+for i in $(cat /home/kairitu/manycolors)
+
+do
+sleep 2
+echo " the color is $i"
+sleep 2
+done
+
+
+# Description: Modifying a file using the echo command
+
+if [ -f /etc/sysconfig/network ]
+
+then
+
+echo "network file exists"
+
+sleep 2
+
+cp /etc/sysconfig/network /etc/sysconfig/network.bk
+
+echo "network file copied"
+
+echo "NETWORKING_IPV6=no" >>/etc/sysconfig/network.bk
+echo "IPV6INIT=no" >>/etc/sysconfig/network.bk
+
+else
+
+echo "network file does not exist"
+
+fi
+
+
+# Description: change the content of the index files of each docker container saved in /home/kairitu/loadbalancer/docker-containers
+
+for dc in $(cat /home/kairitu/loadbalancer/docker-containers)
+
+do
+
+docker cp /home/kairitu/loadbalancer/docker-containers ${dc}:/usr/local/apache2/htdocs/index.html
+
+done
+
+
